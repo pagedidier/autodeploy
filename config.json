@@ -1,0 +1,5 @@
+{
+  "secret" : "secret",
+  "sigHeaderName":"X-Hub-Signature",
+  "rootPath": "/path/"
+}
