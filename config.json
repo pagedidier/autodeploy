@@ -1,5 +1,6 @@
 {
   "secret" : "secret",
   "sigHeaderName":"X-Hub-Signature",
-  "rootPath": "/path/"
+  "rootPath": "/path/",
+  "defaultBehavior": "git pull"
 }
