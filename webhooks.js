@@ -17,9 +17,9 @@ const exec = require('child_process').exec;
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.get('/deploy', (req, res) => {
+app.post('/deploy', (req, res) => {
 
-    /* const hmac = crypto.createHmac('sha1', secret);
+    const hmac = crypto.createHmac('sha1', secret);
     const digest = 'sha1=' + hmac.update(JSON.stringify(req.body)).digest('hex')
     const checksum = req.get(sigHeaderName);
 
@@ -29,7 +29,7 @@ app.get('/deploy', (req, res) => {
 
     const repoName = req.body.repository.name;
     const path = repositoriesPath+repoName;
-    const branch = req.body.ref.split('/').pop();*/
+    const branch = req.body.ref.split('/').pop();
     try {
         if (fs.existsSync(repositoriesPath+scriptPath)) {
             command = 'sh ' + scriptPath;
@@ -38,14 +38,12 @@ app.get('/deploy', (req, res) => {
         console.error(err)
     }
     command = 'cd ' + repositoriesPath + ' && ' + command;
-    console.log(repositoriesPath+scriptPath);
     exec(command,(error, stdout, stderr)=>{
         //console.log('stdout: ' + stdout);
         if (error !== null) {
             console.log('stderr: ' + stderr);
             console.log('exec error: ' + error);
         }
-        console.log("Done");
         res.json({'stdout': stdout , 'stderr': stderr});
     });
     res.send('Done');
