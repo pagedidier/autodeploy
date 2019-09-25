@@ -28,7 +28,7 @@ app.post('/deploy', (req, res) => {
     }
 
     const repoName = req.body.repository.name;
-    const path = repositoriesPath+repoName;
+    const repoPath = repositoriesPath+repoName;
     const branch = req.body.ref.split('/').pop();
     try {
         if (fs.existsSync(repositoriesPath+scriptPath)) {
@@ -37,7 +37,7 @@ app.post('/deploy', (req, res) => {
     } catch(err) {
         console.error(err)
     }
-    command = 'cd ' + repositoriesPath + ' && ' + command;
+    command = 'cd ' + repoPath + ' && ' + command;
     exec(command,(error, stdout, stderr)=>{
         //console.log('stdout: ' + stdout);
         if (error !== null) {
