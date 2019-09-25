@@ -30,21 +30,23 @@ app.post('/deploy', (req, res) => {
     const repoName = req.body.repository.name;
     const repoPath = repositoriesPath+repoName;
     const branch = req.body.ref.split('/').pop();
+    console.log(repoPath+"/"+scriptPath);	
     try {
-        if (fs.existsSync(repositoriesPath+scriptPath)) {
+        if (fs.existsSync(repoPath+"/"+scriptPath)) {
             command = 'sh ' + scriptPath;
         }
     } catch(err) {
-        console.error(err)
+        console.log(err)
     }
     command = 'cd ' + repoPath + ' && ' + command;
+    console.log(command);
     exec(command,(error, stdout, stderr)=>{
         //console.log('stdout: ' + stdout);
         if (error !== null) {
             console.log('stderr: ' + stderr);
             console.log('exec error: ' + error);
         }
-        res.json({'stdout': stdout , 'stderr': stderr});
+        //res.json({'stdout': stdout , 'stderr': stderr});
     });
     res.send('Done');
 });
