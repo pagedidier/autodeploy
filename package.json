@@ -4,12 +4,18 @@
   "description": "",
   "main": "webhooks.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "child_process": "^1.0.2",
+    "crypto": "^1.0.1",
     "express": "^4.17.1",
-    "nodemon": "^1.19.0"
+    "fs": "0.0.1-security",
+    "nodemon": "^1.19.0",
+    "path": "^0.12.7"
   }
 }
